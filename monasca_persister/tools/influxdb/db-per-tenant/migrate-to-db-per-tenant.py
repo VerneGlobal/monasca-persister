@@ -198,7 +198,7 @@ def main():
                           '(e.g. ^log\\\\..+,^cpu\\\\..+ to skip metrics beginning with log.)')),
     ]
     CONF.register_cli_opts(cli_opts)
-    config.parse_args("Monasca InfluxDB database per tenant migration tool")
+    config.parse_args()
 
     # Configure custom retention policy for your existing projects. For
     # example, rp2w is a retention policy of two weeks which we can assign to
