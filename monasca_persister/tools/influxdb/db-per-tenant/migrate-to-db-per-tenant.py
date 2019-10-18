@@ -125,7 +125,8 @@ class MigrationHelper(object):
     def migrate(self,
                 tenant_defaults={},
                 default_start_time_offset=0,  # Default: now
-                default_end_time_offset=(520),  # Default: 10 years
+                default_end_time_offset=(104),  # Default: 10 years
+                default_rp=dict(name='104w', duration='104w', replication='1', default=True),
                 skip_regex=[],
                 measurements_file=None, success_file=None, failure_file=None, **kwargs):
         measurements = self.get_measurements(measurements_file)
@@ -160,7 +161,7 @@ class MigrationHelper(object):
                         tenant_id, {}).get('end_time_offset_override',
                                            default_end_time_offset)
                     retention_policy = tenant_defaults.get(
-                        tenant_id, {}) .get('rp', {})
+                        tenant_id, {}) .get('rp', default_rp)
                     self._migrate(measurement, tenant_id,
                                   start_time_offset=start_time_offset,
                                   end_time_offset=end_time_offset,
